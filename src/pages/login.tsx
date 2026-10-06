@@ -46,9 +46,9 @@ export default function App({ setIsAuthenticated }: AppProps) {
         } catch (error) {
             if (axios.isAxiosError(error)) {
                 const data = error.response?.data as BackendError | undefined;
-                console.error('Ошибка сети или сервера:', data);
+                console.error('Network or server error:', data);
             } else {
-                console.error('Ошибка сети или сервера:', error);
+                console.error('Network or server error:', error);
             }
         }
     };

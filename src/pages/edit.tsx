@@ -127,7 +127,7 @@ export default function EditTaskPage() {
                     setDayOfMonth(parsedSchedule.dayOfMonth);
                 }
             } catch (err) {
-                console.error("Ошибка загрузки:", err);
+                console.error("Loading error:", err);
             } finally {
                 setLoading(false);
             }
@@ -153,11 +153,11 @@ export default function EditTaskPage() {
             if (res.status >= 200 && res.status < 300) {
                 navigate('/main');
             } else {
-                alert('Не удалось сохранить изменения');
+                alert('Failed to save changes');
             }
         } catch (err) {
-            console.error('Ошибка сохранения:', err);
-            alert('Не удалось сохранить изменения');
+            console.error('Save error:', err);
+            alert('Failed to save changes');
         } finally {
             setIsSubmitting(false);
         }
@@ -186,7 +186,7 @@ export default function EditTaskPage() {
                         </button>
 
                         <div>
-                            <h1 className="text-lg font-semibold text-white">Редактировать задачу</h1>
+                            <h1 className="text-lg font-semibold text-white">Edit task</h1>
                             <p className="text-xs text-slate-400 font-mono">ID: {id}</p>
                         </div>
                     </div>
@@ -197,7 +197,7 @@ export default function EditTaskPage() {
                         </div>
                         <div className="flex flex-col text-right">
                             <span className="text-[9px] font-medium text-slate-500 uppercase tracking-wider leading-none mb-0.5">
-                                База данных
+                                Database
                             </span>
                             <span className="text-xs font-semibold text-indigo-300 font-mono uppercase tracking-wide leading-none">
                                 {dbType}
@@ -218,10 +218,10 @@ export default function EditTaskPage() {
                             </span>
                             <div>
                                 <label htmlFor="task-status-toggle" className="block text-sm font-medium text-slate-200 cursor-pointer">
-                                    Статус задачи
+                                    Task status
                                 </label>
                                 <p className="text-xs text-slate-400">
-                                    {isActive ? 'Задача активна и выполняется по расписанию' : 'Задача приостановлена'}
+                                    {isActive ? 'Task is active and running on schedule' : 'Task is paused'}
                                 </p>
                             </div>
                         </div>
@@ -245,7 +245,7 @@ export default function EditTaskPage() {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div className="space-y-3">
                             <label className="block text-sm font-medium text-slate-300">
-                                Расписание
+                                Schedule
                             </label>
                             <div className="relative">
                                 <Clock className="w-4 h-4 absolute left-3.5 top-3.5 text-slate-500 z-10" />
@@ -254,44 +254,44 @@ export default function EditTaskPage() {
                                     onChange={(e) => setScheduleType(e.target.value)}
                                     className="w-full bg-slate-950 border border-slate-800 rounded-xl py-2.5 pl-10 pr-4 text-sm text-white focus:outline-none focus:border-indigo-500 cursor-pointer"
                                 >
-                                    <option value="daily">Каждый день</option>
-                                    <option value="weekly">Раз в неделю</option>
-                                    <option value="monthly">Раз в месяц</option>
-                                    <option value="hourly">Каждый час</option>
+                                    <option value="daily">Every day</option>
+                                    <option value="weekly">Once a week</option>
+                                    <option value="monthly">Once a month</option>
+                                    <option value="hourly">Every hour</option>
                                 </select>
                             </div>
 
                             {scheduleType === 'weekly' && (
                                 <div className="space-y-1.5">
-                                    <label className="block text-xs font-medium text-slate-400">День недели</label>
+                                    <label className="block text-xs font-medium text-slate-400">Day of the week</label>
                                     <select
                                         value={dayOfWeek}
                                         onChange={(e) => setDayOfWeek(e.target.value)}
                                         className="w-full bg-slate-950 border border-slate-800 rounded-xl py-2.5 px-4 text-sm text-white focus:outline-none focus:border-indigo-500 cursor-pointer"
                                     >
-                                        <option value="1">Понедельник</option>
-                                        <option value="2">Вторник</option>
-                                        <option value="3">Среда</option>
-                                        <option value="4">Четверг</option>
-                                        <option value="5">Пятница</option>
-                                        <option value="6">Суббота</option>
-                                        <option value="0">Воскресенье</option>
+                                        <option value="1">Monday</option>
+                                        <option value="2">Tuesday</option>
+                                        <option value="3">Wednesday</option>
+                                        <option value="4">Thursday</option>
+                                        <option value="5">Friday</option>
+                                        <option value="6">Saturday</option>
+                                        <option value="0">Sunday</option>
                                     </select>
                                 </div>
                             )}
 
                             {scheduleType === 'monthly' && (
                                 <div className="space-y-1.5">
-                                    <label className="block text-xs font-medium text-slate-400">Число месяца</label>
+                                    <label className="block text-xs font-medium text-slate-400">Day of the month</label>
                                     <select
                                         value={dayOfMonth}
                                         onChange={(e) => setDayOfMonth(e.target.value)}
                                         className="w-full bg-slate-950 border border-slate-800 rounded-xl py-2.5 px-4 text-sm text-white focus:outline-none focus:border-indigo-500 cursor-pointer"
                                     >
-                                        <option value="last">Последний день месяца</option>
+                                        <option value="last">The last day of the month</option>
                                         {Array.from({ length: 31 }, (_, i) => i + 1).map((day) => (
                                             <option key={day} value={day}>
-                                                {day}-е число
+                                                {day}-е date
                                             </option>
                                         ))}
                                     </select>
@@ -300,7 +300,7 @@ export default function EditTaskPage() {
 
                             {scheduleType !== 'hourly' && (
                                 <div className="space-y-1.5">
-                                    <label className="block text-xs font-medium text-slate-400">Время запуска</label>
+                                    <label className="block text-xs font-medium text-slate-400">Launch time</label>
                                     <input
                                         type="time"
                                         value={time}
@@ -315,7 +315,7 @@ export default function EditTaskPage() {
                     </div>
 
                     <p className="text-xs text-slate-500 italic pt-2">
-                        Сгенерированный Cron: <code className="text-indigo-400 font-mono">{generateCron()}</code>
+                        Generated Cron: <code className="text-indigo-400 font-mono">{generateCron()}</code>
                     </p>
 
                     <div className="flex items-center justify-end gap-3 pt-4 border-t border-slate-800/80">
@@ -324,7 +324,7 @@ export default function EditTaskPage() {
                             onClick={() => navigate('/main')}
                             className="px-4 py-2.5 rounded-xl border border-slate-700 text-slate-300 hover:bg-slate-800 text-sm font-medium transition-colors"
                         >
-                            Отмена
+                            Cancel
                         </button>
 
                         <button
@@ -333,7 +333,7 @@ export default function EditTaskPage() {
                             className="px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-medium shadow-lg shadow-indigo-600/30 flex items-center gap-2 transition-all hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 cursor-pointer"
                         >
                             <Save className="w-4 h-4" />
-                            {isSubmitting ? 'Сохранение...' : 'Сохранить изменения'}
+                            {isSubmitting ? 'Saving...' : 'Save changes'}
                         </button>
                     </div>
                 </form>

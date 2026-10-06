@@ -41,10 +41,9 @@
     "typescript": "^7.0.2"
   },
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview",
-    "postinstall": "prisma skills sync || exit 0"
+    "dev": "vite docs",
+    "build": "vite build docs --base ./ --outDir ../docs",
+    "preview": "vite preview docs"
   },
   "name": "backup-landing",
   "version": "1.0.0",

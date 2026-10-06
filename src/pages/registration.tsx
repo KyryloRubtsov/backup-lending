@@ -48,7 +48,7 @@ export default function App({ setIsAuthenticated }: AppProps) {
                 const data = error.response?.data as BackendError | undefined;
                 console.log(data?.message);
             } else {
-                console.error('Неизвестная ошибка:', error);
+                console.error('Unknown error:', error);
             }
         } finally {
             setIsSubmitting(false);
@@ -82,7 +82,7 @@ export default function App({ setIsAuthenticated }: AppProps) {
                 const data = error.response?.data as BackendError | undefined;
                 alert(data?.error || data?.message || 'Ошибка входа');
             } else {
-                console.error('Неизвестная ошибка:', error);
+                console.error('Unknown error:', error);
             }
 
         }
@@ -113,12 +113,12 @@ export default function App({ setIsAuthenticated }: AppProps) {
                 if (message && typeof message === 'string') {
                     setErrorMessage(message);
                 } else {
-                    setErrorMessage('Непредвиденная ошибка бэкенда');
+                    setErrorMessage('Unexpected backend error');
                 }
 
                 console.error(message);
             } else {
-                console.error('Неизвестная ошибка:', error);
+                console.error('Unknown error:', error);
             }
 
         }

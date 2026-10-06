@@ -105,7 +105,7 @@ export default function codeVerification({ isOpen, onClose, onVerify, errorMessa
         try {
             await onVerify(fullCode);
         } catch (err) {
-            const errorMessage = err instanceof Error ? err.message : 'Неверный или истекший код';
+            const errorMessage = err instanceof Error ? err.message : 'Invalid or expired code';
             console.log(errorMessage);
         }
     };
@@ -126,10 +126,10 @@ export default function codeVerification({ isOpen, onClose, onVerify, errorMessa
                         <Mail className="w-6 h-6" />
                     </div>
                     <h2 className="text-xl font-bold text-white mb-1">
-                        Проверьте вашу почту
+                        Check your email.
                     </h2>
                     <p className="text-sm text-slate-400">
-                        Мы отправили код подтверждения на
+                        We have sent a confirmation code to
                     </p>
                     <p className="text-sm font-medium text-indigo-300 font-mono mt-0.5">
                         {formData.email}
@@ -171,17 +171,17 @@ export default function codeVerification({ isOpen, onClose, onVerify, errorMessa
 
                         <>
                             <CheckCircle2 className="w-4 h-4" />
-                            Подтвердить
+                            Confirm
                         </>
 
                     </button>
                 </form>
 
                 <div className="mt-6 text-center text-xs text-slate-400">
-                    Не получили код?{' '}
+                    Didn't receive the code?{' '}
                     {timer > 0 ? (
                         <span className="text-slate-500 font-mono">
-                            Отправить повторно через {timer}s
+                            Resend in {timer}s
                         </span>
                     ) : (
                         <button
@@ -189,7 +189,7 @@ export default function codeVerification({ isOpen, onClose, onVerify, errorMessa
                             onClick={handleResend}
                             className="text-indigo-400 hover:text-indigo-300 font-medium inline-flex items-center gap-1 ml-1"
                         >
-                            <RefreshCw className="w-3 h-3" /> Отправить снова
+                            <RefreshCw className="w-3 h-3" /> Send again
                         </button>
                     )}
                 </div>

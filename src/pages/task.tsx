@@ -60,7 +60,7 @@ export default function App() {
             navigate("/main");
 
         } catch (error) {
-            let errorMsg = 'Ошибка при сохранении';
+            let errorMsg = 'Error while saving';
 
             if (axios.isAxiosError(error)) {
                 errorMsg = error.response?.data?.message || errorMsg;
@@ -69,7 +69,7 @@ export default function App() {
             }
 
             alert(errorMsg);
-            console.error('Ошибка сохранения:', error);
+            console.error('Save error:', error);
         }
     };
     return (
@@ -80,15 +80,15 @@ export default function App() {
                         <Database className="w-6 h-6" />
                     </div>
                     <div>
-                        <h3 className="text-xl font-bold text-white">Новая задача бэкапа</h3>
-                        <p className="text-xs text-slate-400">Укажите параметры подключения к вашей БД</p>
+                        <h3 className="text-xl font-bold text-white">New backup task</h3>
+                        <p className="text-xs text-slate-400">Specify the connection parameters for your database.</p>
                     </div>
                 </div>
 
                 <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="space-y-2">
                         <label className="block text-xs font-semibold text-slate-400 uppercase tracking-wider">
-                            Тип базы данных
+                            Database type
                         </label>
                         <div className="grid grid-cols-3 gap-3">
                             {[
@@ -114,7 +114,7 @@ export default function App() {
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                         <div className="md:col-span-2 space-y-1.5">
                             <label className="block text-xs font-medium text-slate-400 flex items-center gap-1.5">
-                                <Server className="w-3.5 h-3.5" /> Хост (Host)
+                                <Server className="w-3.5 h-3.5" /> Host
                             </label>
                             <input
                                 type="text"
@@ -128,7 +128,7 @@ export default function App() {
 
                         <div className="space-y-1.5">
                             <label className="block text-xs font-medium text-slate-400 flex items-center gap-1.5">
-                                <Link className="w-3.5 h-3.5" /> Порт
+                                <Link className="w-3.5 h-3.5" /> Port
                             </label>
                             <input
                                 type="text"
@@ -143,7 +143,7 @@ export default function App() {
 
                     <div className="space-y-1.5">
                         <label className="block text-xs font-medium text-slate-400 flex items-center gap-1.5">
-                            <Database className="w-3.5 h-3.5" /> Имя базы данных
+                            <Database className="w-3.5 h-3.5" /> Database name
                         </label>
                         <input
                             type="text"
@@ -158,7 +158,7 @@ export default function App() {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div className="space-y-1.5">
                             <label className="block text-xs font-medium text-slate-400 flex items-center gap-1.5">
-                                <User className="w-3.5 h-3.5" /> Пользователь
+                                <User className="w-3.5 h-3.5" /> User
                             </label>
                             <input
                                 type="text"
@@ -172,7 +172,7 @@ export default function App() {
 
                         <div className="space-y-1.5">
                             <label className="block text-xs font-medium text-slate-400 flex items-center gap-1.5">
-                                <Key className="w-3.5 h-3.5" /> Пароль
+                                <Key className="w-3.5 h-3.5" /> Password
                             </label>
                             <input
                                 type="password"
@@ -187,55 +187,55 @@ export default function App() {
 
                     <div className="pt-2 border-t border-slate-800/80 space-y-4">
                         <label className="block text-xs font-semibold text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
-                            <Clock className="w-4 h-4 text-indigo-400" /> Расписание бэкапов
+                            <Clock className="w-4 h-4 text-indigo-400" /> Backup schedule
                         </label>
 
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <div className="space-y-1.5">
-                                <label className="block text-xs font-medium text-slate-400">Периодичность</label>
+                                <label className="block text-xs font-medium text-slate-400">Periodicity</label>
                                 <select
                                     value={scheduleType}
                                     onChange={(e) => setScheduleType(e.target.value)}
                                     className="w-full bg-slate-950 border border-slate-800 rounded-xl py-2.5 px-4 text-sm text-white focus:outline-none focus:border-indigo-500 cursor-pointer"
                                 >
-                                    <option value="daily">Каждый день</option>
-                                    <option value="weekly">Раз в неделю</option>
-                                    <option value="monthly">Раз в месяц</option>
-                                    <option value="hourly">Каждый час</option>
+                                    <option value="daily">Every day</option>
+                                    <option value="weekly">Once a week</option>
+                                    <option value="monthly">Once a month</option>
+                                    <option value="hourly">Every hour</option>
                                 </select>
                             </div>
 
                             {scheduleType === 'weekly' && (
                                 <div className="space-y-1.5">
-                                    <label className="block text-xs font-medium text-slate-400">День недели</label>
+                                    <label className="block text-xs font-medium text-slate-400">Day of the week</label>
                                     <select
                                         value={dayOfWeek}
                                         onChange={(e) => setDayOfWeek(e.target.value)}
                                         className="w-full bg-slate-950 border border-slate-800 rounded-xl py-2.5 px-4 text-sm text-white focus:outline-none focus:border-indigo-500 cursor-pointer"
                                     >
-                                        <option value="1">Понедельник</option>
-                                        <option value="2">Вторник</option>
-                                        <option value="3">Среда</option>
-                                        <option value="4">Четверг</option>
-                                        <option value="5">Пятница</option>
-                                        <option value="6">Суббота</option>
-                                        <option value="0">Воскресенье</option>
+                                        <option value="1">Monday</option>
+                                        <option value="2">Tuesday</option>
+                                        <option value="3">Wednesday</option>
+                                        <option value="4">Thursday</option>
+                                        <option value="5">Friday</option>
+                                        <option value="6">Saturday</option>
+                                        <option value="0">Sunday</option>
                                     </select>
                                 </div>
                             )}
 
                             {scheduleType === 'monthly' && (
                                 <div className="space-y-1.5">
-                                    <label className="block text-xs font-medium text-slate-400">Число месяца</label>
+                                    <label className="block text-xs font-medium text-slate-400">Day of the month</label>
                                     <select
                                         value={dayOfMonth}
                                         onChange={(e) => setDayOfMonth(e.target.value)}
                                         className="w-full bg-slate-950 border border-slate-800 rounded-xl py-2.5 px-4 text-sm text-white focus:outline-none focus:border-indigo-500 cursor-pointer"
                                     >
-                                        <option value="last">Последний день месяца</option>
+                                        <option value="last">Last day of the month</option>
                                         {Array.from({ length: 31 }, (_, i) => i + 1).map((day) => (
                                             <option key={day} value={day}>
-                                                {day}-е число
+                                                {day}-е date
                                             </option>
                                         ))}
                                     </select>
@@ -244,7 +244,7 @@ export default function App() {
 
                             {scheduleType !== 'hourly' && (
                                 <div className="space-y-1.5">
-                                    <label className="block text-xs font-medium text-slate-400">Время запуска</label>
+                                    <label className="block text-xs font-medium text-slate-400">Launch time</label>
                                     <input
                                         type="time"
                                         value={time}
@@ -256,7 +256,7 @@ export default function App() {
                         </div>
 
                         <p className="text-xs text-slate-500 italic">
-                            Сгенерированный Cron: <code className="text-indigo-400 font-mono">{generateCron()}</code>
+                            Generated Cron: <code className="text-indigo-400 font-mono">{generateCron()}</code>
                         </p>
                     </div>
 
@@ -266,13 +266,13 @@ export default function App() {
                             onClick={() => navigate("/")}
                             className="px-5 py-3 bg-slate-950 hover:bg-slate-800 text-slate-300 hover:text-white font-medium text-sm border border-slate-800 rounded-xl transition-all"
                         >
-                            Назад
+                            Back
                         </button>
                         <button
                             type="submit"
                             className="flex-1 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-semibold rounded-xl shadow-lg shadow-indigo-600/30 transition-all hover:scale-[1.01] active:scale-[0.99]"
                         >
-                            Сохранить расписание
+                            Save schedule
                         </button>
                     </div>
                 </form>

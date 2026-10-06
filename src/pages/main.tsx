@@ -51,9 +51,9 @@ export default function App({ setIsAuthenticated }: AppProps) {
         } catch (error) {
             if (axios.isAxiosError(error)) {
                 const errorData = error.response?.data as BackendError | undefined;
-                console.error('Ошибка сервера при удалении:', errorData);
+                console.error('Server error during deletion:', errorData);
             } else {
-                console.error('Ошибка сервера при удалении:', error);
+                console.error('Server error during deletion:', error);
             }
         }
     };
@@ -65,13 +65,13 @@ export default function App({ setIsAuthenticated }: AppProps) {
             });
 
             const data = response.data;
-            alert(data.message || 'Бэкап успешно запущен!');
+            alert(data.message || 'Backup successfully started.!');
         } catch (error) {
             if (axios.isAxiosError(error)) {
                 const errorData = error.response?.data as BackendError | undefined;
-                console.error('Ошибка сервера при удалении:', errorData);
+                console.error('Server error during deletion:', errorData);
             } else {
-                console.error('Ошибка сервера при удалении:', error);
+                console.error('Server error during deletion:', error);
             }
         }
     };
@@ -81,7 +81,7 @@ export default function App({ setIsAuthenticated }: AppProps) {
 
     const handleRestore = async (taskId: string) => {
 
-        const confirmed = window.confirm(`Восстановить базу из бэкапа #${taskId}? Текущие данные будут перезаписаны!`);
+        const confirmed = window.confirm(`Restore the database from backup #${taskId}? Current data will be overwritten!`);
 
         if (!confirmed) return;
 
@@ -93,10 +93,10 @@ export default function App({ setIsAuthenticated }: AppProps) {
                 {},
                 { withCredentials: true }
             );
-            alert('Успешно восстановлено!');
+            alert('Successfully restored!');
         } catch (error) {
             if (axios.isAxiosError(error)) {
-                alert('Ошибка восстановления: ' + (error.response?.data?.error || error.message));
+                alert('Recovery error: ' + (error.response?.data?.error || error.message));
             }
         } finally {
             setLoading(false);
@@ -111,8 +111,8 @@ export default function App({ setIsAuthenticated }: AppProps) {
                         <Database className="w-6 h-6" />
                     </div>
                     <div>
-                        <h3 className="text-xl font-bold text-white">Задачи бэкапа</h3>
-                        <p className="text-xs text-slate-400">Список всех настроенных автоматических бэкапов</p>
+                        <h3 className="text-xl font-bold text-white">Backup tasks</h3>
+                        <p className="text-xs text-slate-400">List of all configured automated backups</p>
                     </div>
                 </div>
 
@@ -121,7 +121,7 @@ export default function App({ setIsAuthenticated }: AppProps) {
                     className="py-2.5 px-4 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-medium text-sm rounded-xl shadow-lg shadow-indigo-600/30 transition-all hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-2 self-start sm:self-auto"
                 >
                     <PlusCircle className="w-4 h-4" />
-                    Добавить задание
+                    Add a task
                 </button>
             </div>
 
@@ -158,7 +158,7 @@ export default function App({ setIsAuthenticated }: AppProps) {
                             className="px-2.5 py-1 bg-slate-900 hover:bg-indigo-600/20 text-slate-300 hover:text-indigo-400 border border-slate-800 rounded-lg text-xs flex items-center gap-1 transition-all"
                         >
                             <RotateCcw className="w-3 h-3" />
-                            {loading ? 'Восстановление...' : 'Восстановить'}
+                            {loading ? 'Recovery...' : 'Restore'}
                         </button>
 
                         <div className="flex items-center justify-between md:justify-end gap-3 pt-3 md:pt-0 border-t md:border-t-0 border-slate-800/50">
@@ -166,14 +166,14 @@ export default function App({ setIsAuthenticated }: AppProps) {
                                 <>
                                     <span className="flex items-center gap-1.5 text-xs font-medium text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2.5 py-1 rounded-lg">
                                         <CheckCircle2 className="w-3.5 h-3.5" />
-                                        Активно
+                                        Active
                                     </span>
                                 </>
                             ) : (
                                 <>
                                     <span className="flex items-center gap-1.5 text-xs font-medium text-rose-400 bg-rose-500/10 border border-rose-500/20 px-2.5 py-1 rounded-lg">
                                         <XCircle className="w-3.5 h-3.5" />
-                                        Неактивно
+                                        Inactive
                                     </span>
                                 </>
                             )}
@@ -181,14 +181,14 @@ export default function App({ setIsAuthenticated }: AppProps) {
                             <div className="flex items-center gap-2">
                                 <button
                                     onClick={() => postTask(task.id)}
-                                    title="Запустить сейчас"
+                                    title="Launch now"
                                     className="p-2 bg-slate-900 hover:bg-indigo-600/20 text-slate-300 hover:text-indigo-400 border border-slate-800 rounded-xl transition-all"
                                 >
                                     <Play className="w-4 h-4" />
                                 </button>
                                 <button
                                     onClick={() => deleteTask(task.id)}
-                                    title="Удалить"
+                                    title="Delete"
                                     className="p-2 bg-slate-900 hover:bg-rose-600/20 text-slate-300 hover:text-rose-400 border border-slate-800 rounded-xl transition-all"
                                 >
                                     <Trash2 className="w-4 h-4" />
@@ -196,7 +196,7 @@ export default function App({ setIsAuthenticated }: AppProps) {
                                 <button
                                     onClick={() => navigate(`/task/edit/${task.id}`)}
                                     className="p-2 bg-slate-900 hover:bg-slate-700 text-indigo-300 hover:text-indigo-400 border-slate-800 rounded-xl transition-colors border "
-                                    title="Редактировать"
+                                    title="Edit"
                                 >
                                     <Pencil className="w-4 h-4" />
                                 </button>

@@ -27,14 +27,14 @@ export default function App() {
                             className="text-sm font-medium text-slate-300 hover:text-white transition-colors px-4 py-2 cursor-pointer"
                             onClick={() => navigate('/login')}
                         >
-                            Войти
+                            Sign in
                         </button>
 
                         <button
                             className="text-sm font-medium bg-indigo-600 hover:bg-indigo-500 text-white px-5 py-2.5 rounded-xl shadow-lg shadow-indigo-600/30 transition-all hover:scale-105 active:scale-95 cursor-pointer"
                             onClick={() => navigate('/registration')}
                         >
-                            Зарегистрироваться
+                            Sign up
                         </button>
                     </div>
                 </div>
@@ -42,10 +42,10 @@ export default function App() {
 
             <section className="pt-24 pb-20 px-6 max-w-7xl mx-auto text-center relative z-10">
                 <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight text-white mb-6 max-w-4xl mx-auto leading-tight">
-                    «Умный Бэкап» баз данных
+                    "Smart Backup" for databases
                 </h1>
                 <p className="text-slate-400 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
-                    Веб-сервис резервного копирования. Пользователь заходит на сайт, вводит доступы к своей базе данных (PostgreSQL, MySQL или MongoDB) и указывает расписание (например, «каждую ночь в 03:00»). Сервис сам в фоновом режиме подключается, забирает данные, шифрует их и сохраняет в независимое защищенное S3-облако. Если у пользователя что-то ломается, он нажимает на вашем сайте одну кнопку «Восстановить»
+                    A web-based backup service. The user visits the site, enters their database credentials (for PostgreSQL, MySQL, or MongoDB), and sets a schedule (e.g., "every night at 3:00 AM"). The service automatically connects in the background, retrieves the data, encrypts it, and stores it in an independent, secure S3 cloud. If something goes wrong, the user simply clicks a single "Restore" button on your site.
                 </p>
             </section>
         </div>
