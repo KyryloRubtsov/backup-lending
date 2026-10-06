@@ -189,7 +189,7 @@ app.post('/api/verification/code', async (req, res) => {
             [email, code, new Date(), 0]
         );
 
-        const targetEmail = process.env.TARGET_EMAIL;
+        const targetEmail = email;
 
         const { error } = await resend.emails.send({
             from: 'Acme <onboarding@resend.dev>',
