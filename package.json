@@ -41,12 +41,16 @@
     "typescript": "^7.0.2"
   },
   "scripts": {
-    "dev": "vite docs",
-    "build": "vite build docs --base ./ --outDir ../docs",
-    "preview": "vite preview docs"
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint .",
+    "preview": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "name": "backup-landing",
   "version": "1.0.0",
+  "homepage": "view-source:https://kyrylorubtsov.github.io/backup-lending/",
   "description": "",
   "main": "server_backup.js",
   "keywords": [],
